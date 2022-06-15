@@ -12,7 +12,7 @@
 - name: ensuring the repo checkout exists
   git:
     repo: "{{ repo_remote_url }}"
-    dest: ""{{r epo_folder }}"
+    dest: ""{{ repo_folder }}"
     update: yes
 
 - name: ensure artifact is built
