@@ -1,0 +1,6 @@
+---
+# defaults file for builder
+webapps_folder: /var/lib/tomcat9/webapps/
+repo_folder: /tmp/
+repo_name: boxfuse-sample-java-war-hello
+repo_remote_url: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git

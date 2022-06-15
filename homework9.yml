@@ -1,0 +1,14 @@
+---
+- name: webserver configurations
+  hosts: web
+  become: yes
+
+  roles:
+    - webserver
+
+- name: builder configuration
+  hosts: builder
+  become: yes
+
+  roles:
+    - builder

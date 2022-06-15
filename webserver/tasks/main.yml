@@ -1,0 +1,14 @@
+---
+# tasks file for webserver
+- name: Ensure all packages is present
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - default-jdk
+    - tomcat9
+
+- name: ensure tomcat is started
+  service:
+    name: tomcat9
+    state: started

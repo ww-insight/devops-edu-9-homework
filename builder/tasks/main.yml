@@ -1,0 +1,28 @@
+---
+# tasks file for builder
+- name: Ensure all packages installed
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - default-jdk
+    - maven
+    -
+- name: ensuring the repo checkout exists
+  git:
+    repo: "{{ repo_remote_url }}"
+    dest: {{repo_folder}}/{{repo_name}}
+    update: yes
+
+- name: ensure artifact is built
+  shell: mvn package -f {{repo_folder}}/{{repo_name}}/
+
+- name: ensure artifact is uploaded to web
+  synchronize:
+    src: {{repo_folder}}/{{repo_name}}/target/*.war
+    dest: {{webapps_folder}}/
+    mode: pull
+  delegate_to: "{{ item }}"
+  loop: "{{ groups['web'] }}"
+  notify: restart tomcat on web
