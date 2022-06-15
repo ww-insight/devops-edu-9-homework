@@ -3,3 +3,4 @@
 - name: restart tomcat on web
   service: name=tomcat9 state=restarted
   delegate_to: "{{ item }}"
+  loop: "{{ groups['web'] }}"
